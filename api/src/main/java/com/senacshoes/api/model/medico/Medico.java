@@ -22,6 +22,7 @@ public class Medico implements Serializable {
     private String email;
     private String telefone;
     private String crm;
+    private Boolean ativo;
 
     @Enumerated(EnumType.STRING)
     private Especialidades especialidade;
@@ -30,6 +31,7 @@ public class Medico implements Serializable {
     private Endereco endereco;
 
     public Medico(DadosCadastroMedico dados) {
+        this.ativo = true;
         this.nome = dados.nome();
         this.email = dados.email();
         this.crm = dados.crm();
@@ -49,5 +51,9 @@ public class Medico implements Serializable {
             this.endereco.atualizarInformacoes(dados.endereco());
         }
 
+    }
+
+    public void excluir() {
+        this.ativo = false;
     }
 }

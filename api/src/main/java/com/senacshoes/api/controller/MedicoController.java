@@ -1,8 +1,8 @@
 package com.senacshoes.api.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +26,8 @@ public class MedicoController {
 	}
 
 	@GetMapping
-	public List<DadosListagemMedico> listar() {
-		return repository.findAll().stream().map(DadosListagemMedico::new).toList();
+	public Page<DadosListagemMedico> listar(Pageable paginacao) {
+		return repository.findAllByAtivoTrue(paginacao).map(DadosListagemMedico::new);
 	}
 
 	@PutMapping
@@ -40,7 +40,8 @@ public class MedicoController {
 	@DeleteMapping("/{id}")
 	@Transactional
 	public void excluir(@PathVariable Long id) {
-		repository.deleteById(id);
+		var medico = repository.getReferenceById(id);
+		medico.excluir();
 	}
 
 }

@@ -1,12 +1,3 @@
-# DIA 10/09/2024
-1. Criação do Enum Status 
-2. Criação do Enum Prioridade
-3. 
-
-
-Criação das tabelas pacientes e consultas
-
-
 ## Utilizando o Banco de dados H2 - Tempo de execução
 1. Criar um arquivo chamado `application-test.properties` e incluir o seguinte código:
 
@@ -27,3 +18,27 @@ spring.jpa.properties.hibernate.format_sql=true
 3. No arquivo original `application.properties`, realizar o apontamento para o `application-dev.properties`:
 `spring.profiles.active=dev`
 
+
+=========================================================================================================================================
+[PAGINAÇÃO]
+Para alterar o tamanho e a página que está sendo exibida pelo insomnia
+`localhost:8080/medicos?size=1&page=2`
+
+[ORDENAÇÃO]
+Para alterar a ordenação 
+`localhost:8080/medicos?sort=nome`
+`localhost:8080/medicos?sort=nome,desc `- O padrão é asc.
+
+=========================================================================================================================================
+
+[DTO]-> Conversão de dados Json para objeto na API.
+[DAO] -> Classes responsáveis por guardar as lógicas das persistências no Banco de Dados;
+[JPA] -> Anotações responsáveis pela persistência no Banco de Dados;
+
+=========================================================================================================================================
+
+[DELETE] - Em muitas regras de negócios, o dado não é excluido e sim desativado. Chamamos isso de exclusão lógica.
+
+Código a ser utilizado para o flyway, no arquivo migrations:
+alter table medicos add ativo tinyint;
+update medicos set ativo = 1;

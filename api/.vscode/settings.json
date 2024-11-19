@@ -1,0 +1,10 @@
+{
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "files.exclude": {
+      "target": true,
+      "mvnw": true,
+      "mvnw.cmd": true,
+ 
+    }
+}
